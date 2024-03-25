@@ -5,7 +5,7 @@ namespace Tests;
 [TestClass]
 public class TestsClass
 {
-    private string F(string num1, string op, string num2) => Exsr3.Exsr3.PerformOperation(num1, op, num2);
+    private static string F(string num1, string op, string num2) => Exsr3.Exsr3.PerformOperation(num1, op, num2);
     
     #region DefaultTests
     [TestMethod]
@@ -24,7 +24,11 @@ public class TestsClass
     [TestMethod]
     public void TestPPP2() => Assert.AreEqual("299", F("100", "+", "199"));
     [TestMethod]
-    public void TestPPP3() => Assert.AreEqual("200", F("100", "+", "100"));
+    public void TestPPP3() => Assert.AreEqual("160", F("107", "+", "53"));
+    [TestMethod]
+    public void TestPPP4() => Assert.AreEqual("160", F("53", "+", "107"));
+    [TestMethod]
+    public void TestPPP5() => Assert.AreEqual("200", F("100", "+", "100"));
     [TestMethod]
     public void TestPPM() => Assert.AreEqual("-99", F("100", "+", "-199"));
     [TestMethod]
@@ -129,5 +133,4 @@ public class TestsClass
     public void TestMaxMMM3() => Assert.AreEqual("0", F("-"+new string('3',999), "-", "-"+new string('3',999)));
     #endregion
     #endregion
-
 }

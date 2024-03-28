@@ -1,5 +1,4 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-
 namespace Tests;
 
 [TestClass]
@@ -41,6 +40,8 @@ public class TestsClass
     public void TestMPP2() => Assert.AreEqual("99", F("-100", "+", "199"));
     [TestMethod]
     public void TestMPP3() => Assert.AreEqual("0", F("-100", "+", "100"));
+    [TestMethod]
+    public void TestMPP4() => Assert.AreEqual("238", F("-594", "+", "832"));
     [TestMethod]
     public void TestMPM() => Assert.AreEqual("-299", F("-199", "+", "-100"));
     [TestMethod]

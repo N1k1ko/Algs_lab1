@@ -1,4 +1,6 @@
-﻿namespace Exsr3
+﻿using System.Diagnostics;
+
+namespace Exsr3
 {
     public class Exsr3
     {
@@ -12,8 +14,17 @@
 
             Console.WriteLine("Enter the second number:");
             string num2 = Console.ReadLine();
+            Stopwatch stopWatch = new();
+            stopWatch.Start();
+            long before = GC.GetTotalMemory(true);
 
             string result = PerformOperation(num1, op, num2);
+
+            long after = GC.GetTotalMemory(true);
+            stopWatch.Stop();
+            long consumedInMegabytes = (after - before)/1024;
+            Console.WriteLine($"Ram: {consumedInMegabytes}KB");
+            Console.WriteLine($"Time: {stopWatch.Elapsed.Milliseconds}ms");
             Console.WriteLine("Result: " + result);
         }
 
@@ -47,13 +58,10 @@
                         return "-" + PostSubtract(Subtract(num2, num1));
                 case ("-", "+", ""):
                 case ("-", "-", "-"):
-                    if (IsAbsBigger(num1, num2))
-                    {
-                        var result = PostSubtract(Subtract(num1, num2));
-                        return result == "0" ? "0" : "-" + result;
-                    }
-                    else
+                    if (IsAbsBigger(num2, num1))
                         return PostSubtract(Subtract(num2, num1));
+                    else
+                        return "-" + PostSubtract(Subtract(num1, num2));
             }
             throw new Exception("Wrong operator");
         }
@@ -89,10 +97,10 @@
             int digit1 = num1[0] - '0';
             int digit2 = num2[0] - '0';
 
-            if (digit1 < digit2)
-                return false;
+            if (digit1 == digit2)
+                return IsAbsBigger(num1[1..], num2[1..]);
 
-            return IsAbsBigger(num1[1..], num2[1..]);
+            return digit1 > digit2;
         }
 
         public static string Subtract(string num1, string num2)

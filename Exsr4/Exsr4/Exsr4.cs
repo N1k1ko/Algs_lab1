@@ -7,19 +7,15 @@ namespace Exsr4
         static void Main()
         {
             Stopwatch stopWatch = new();
-            stopWatch.Start();
-            long before = GC.GetTotalMemory(true);
 
+            stopWatch.Start();
             string dir = "..\\..\\..\\..\\";
             string fileName = "Tests\\test6.txt";
             var f = File.ReadAllLines(dir+fileName);
             File.WriteAllLines(dir+"result.txt", GetResult(f));
-
-            long after = GC.GetTotalMemory(true);
             stopWatch.Stop();
-            long consumedInMegabytes = (after - before)/1024;
+
             Console.WriteLine($"Time: {stopWatch.Elapsed.Milliseconds}ms");
-            Console.WriteLine($"Ram: {consumedInMegabytes}KB");
         }
         
         static string[] GetResult(string[] f){

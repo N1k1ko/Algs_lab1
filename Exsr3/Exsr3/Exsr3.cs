@@ -8,22 +8,17 @@ namespace Exsr3
         {
             Console.WriteLine("Enter the first number:");
             string num1 = Console.ReadLine();
-
             Console.WriteLine("Enter the operation (+ or -):");
             string op = Console.ReadLine();
-
             Console.WriteLine("Enter the second number:");
             string num2 = Console.ReadLine();
+
             Stopwatch stopWatch = new();
+
             stopWatch.Start();
-            long before = GC.GetTotalMemory(true);
-
             string result = PerformOperation(num1, op, num2);
-
-            long after = GC.GetTotalMemory(true);
             stopWatch.Stop();
-            long consumedInMegabytes = (after - before)/1024;
-            Console.WriteLine($"Ram: {consumedInMegabytes}KB");
+
             Console.WriteLine($"Time: {stopWatch.Elapsed.Milliseconds}ms");
             Console.WriteLine("Result: " + result);
         }

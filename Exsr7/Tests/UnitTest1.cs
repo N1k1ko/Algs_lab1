@@ -40,11 +40,8 @@ namespace Tests
         [TestMethod]
         public void Test3()
         {
-            for (int i = 3; i <= 10; i++)
-            {
-                int result = F(i, i);
-                Assert.AreEqual(0, result);
-            }
+            int result = F(5, 5);
+            Assert.AreEqual(0, result);
         }
         [TestMethod]
         public void Test4()

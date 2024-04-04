@@ -26,17 +26,13 @@ namespace Exsr5
             };
 
             Stopwatch stopWatch = new();
+
             stopWatch.Start();
-            long before = GC.GetTotalMemory(true);
-
             var r = F(input);
-
-            long after = GC.GetTotalMemory(true);
             stopWatch.Stop();
-            long consumedInMegabytes = (after - before) / 1024;
+
             Console.WriteLine($"{r[0]} {r[1]} {r[2]} {r[3]}");
             Console.WriteLine($"Time: {stopWatch.Elapsed.Milliseconds}ms");
-            Console.WriteLine($"Ram: {consumedInMegabytes}KB");
         }
 
         static int[] F(string[] input)
